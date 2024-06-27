@@ -10,10 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
     ];
 
     const participants = [
-        "Alice Johnson",
-        "Bob Smith",
-        "Charlie Davis",
-        "Diana Evans",
+        "Plamen Sivrev",
     ];
 
     const scheduleList = document.getElementById("schedule-list");
