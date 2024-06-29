@@ -115,16 +115,8 @@ Event website by Syed Faheel Ahmad (github.com/faheel)
     
       <div class="row">
         <div class="col-md-12">
-          <ul class="list-unstyled">
-            <li>Kavita Bahl</li>
-            <li>Nandan Saxena</li>
-            <li>Dr. Rajesh S. Gokhale</li>
-            <li>Prof. Ramakrishna Ramaswamy</li>
-            <li>Sadaf Hussain</li>
-            <li>Saeed Naqvi</li>
-            <li>Tanmaya Jain</li>
-            <li>Vivek Sharma</li>
-          </ul>
+          <ul id="participants-list" class="list-unstyled"></ul>
+
         </div>
         <!-- //.col-md-12 -->
       </div>
@@ -286,6 +278,32 @@ Event website by Syed Faheel Ahmad (github.com/faheel)
   <!-- Countdown -->
   <script src="../res/js/jquery.countdown.min.js"></script>
   <script src="../res/js/countdown.js"></script>
+
+  <script src="https://apis.google.com/js/api.js"></script>
+  <script>
+    const apiKey = 'AIzaSyDsBGhABTCXGDWREX89dlvla27Tpiujj3E'; // Replace with your API key
+    const spreadsheetId = '17hBBpkz44gZZjLd-mQUu2UZ23zd8U8pnau8AeIGS330'; // Replace with your spreadsheet ID
+    const range = 'Sheet1!A1:A10'; // Adjust the range as needed
+
+    function fetchSheetData() {
+      const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`;
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const values = data.values;
+          const ul = document.getElementById('participants-list');
+          values.forEach(row => {
+            const li = document.createElement('li');
+            li.textContent = row[0]; // Assuming names are in the first column
+            ul.appendChild(li);
+          });
+        })
+        .catch(error => console.error('Error fetching data: ', error));
+    }
+
+    document.addEventListener('DOMContentLoaded', fetchSheetData);
+  </script>
 
 </body>
 
