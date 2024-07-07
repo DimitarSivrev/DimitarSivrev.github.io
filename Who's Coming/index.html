@@ -22,7 +22,7 @@ Event website by Syed Faheel Ahmad (github.com/faheel)
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <!-- Title, icon, description and keywords -->
-  <title>Participants | ERBC</title>
+  <title>Who's Coming | ERBC</title>
   <link rel="shortcut icon" href="../res/images/favicon.ico">
   <meta name="description" content="Who's Coming, x = English Riviera Backgammon Congress.">
   <meta name="keywords" content="ERBGC, Torquay, United Kingdom">
@@ -97,34 +97,37 @@ Event website by Syed Faheel Ahmad (github.com/faheel)
   <!-- //Navigation End -->
 
 
-
   <!-- Section - Participants start -->
   <section id="participants" class="bg-white-2">
     <div class="container">
       <div class="row no-padding-rl">
         <div class="col-md-12">
-          <h2 class="font-family-alt font-weight-700 sm-title-large title-extra-large-2 text-gray-dark-2">
-            Who's Comming
-          </h2>
+          <h2 class="font-family-alt font-weight-700 sm-title-large title-extra-large-2 text-gray-dark-2">Who's Coming</h2>
           <span class="bg-base-color xs-margin-6 xs-no-margin-rl margin-3 no-margin-rl separator-line-extra-thick-long"></span>
           <br>
         </div>
-        <!-- //.col-md-10 -->
       </div>
-      <!-- //.row -->
-    
+
       <div class="row">
         <div class="col-md-12">
-          <ul id="participants-list" class="list-unstyled"></ul>
-
+          <table id="participants-table" class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Registration</th>
+                <th>Entry</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Table rows will be inserted here by JavaScript -->
+            </tbody>
+          </table>
         </div>
-        <!-- //.col-md-12 -->
       </div>
-      <!-- //.row -->
     </div>
-    <!-- //.container -->
   </section>
-  <!-- //Section - Speakers End -->
+  <!-- Section - Participants end -->
 
 
 
@@ -290,11 +293,16 @@ Event website by Syed Faheel Ahmad (github.com/faheel)
         .then(response => response.json())
         .then(data => {
           const values = data.values;
-          const ul = document.getElementById('participants-list');
-          values.forEach(row => {
-            const li = document.createElement('li');
-            li.textContent = row[0]; // Assuming names are in the first column
-            ul.appendChild(li);
+          const tableBody = document.querySelector('#participants-table tbody');
+          values.forEach((row, index) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td>${index + 1}</td>
+              <td>${row[0] || ''}</td>
+              <td>${row[1] || ''}</td>
+              <td>${row[2] || ''}</td>
+            `;
+            tableBody.appendChild(tr);
           });
         })
         .catch(error => console.error('Error fetching data: ', error));
