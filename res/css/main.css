@@ -1843,18 +1843,18 @@ h6 {
 .navbar,
 .navbar.navbar-white.shrink .navbar-nav>li.active>a:before,
 .navbar.shrink {
-  background-color: #000
+  background-color: #000;
 }
 
 .navbar .navbar-nav>li.active>a:before,
 .navbar .navbar-toggle .icon-bar,
 .navbar.navbar-white.shrink {
-  background-color: #fff
+  background-color: #fff;
 }
 
 .navbar .navbar-brand,
 .navbar .navbar-nav>li>a {
-  color: #fff
+  color: #fff;
 }
 
 .navbar,
@@ -1866,7 +1866,7 @@ h6 {
   -webkit-transition: all .2s ease-in-out;
   -moz-transition: all .2s ease-in-out;
   -o-transition: all .2s ease-in-out;
-  transition: all .2s ease-in-out
+  transition: all .2s ease-in-out;
 }
 
 .navbar {
@@ -1892,6 +1892,7 @@ h6 {
 .navbar .container {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 100%;
   padding: 0;
 }
@@ -1904,7 +1905,6 @@ h6 {
 }
 
 .navbar .navbar-brand img {
-  display: inline-block;
   max-height: 43px;
   transition: all 0.2s ease-in-out;
 }
@@ -1914,7 +1914,7 @@ h6 {
 }
 
 .navbar .navbar-brand img.logo-navbar-white {
-  opacity: 0
+  opacity: 0;
 }
 
 .navbar .navbar-toggle {
@@ -2007,6 +2007,7 @@ h6 {
 .navbar.navbar-white.shrink .navbar-brand img.logo-navbar-white {
   opacity: 1;
 }
+
 
 
 section {
