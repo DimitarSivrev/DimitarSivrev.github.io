@@ -1886,7 +1886,7 @@ h6 {
 .navbar .navbar-brand {
   height: 80px;
   line-height: 80px!important;
-  padding: 0 15px
+  padding: 0 0px
 }
 
 .navbar .navbar-brand img {
