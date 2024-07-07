@@ -1842,18 +1842,18 @@ h6 {
 .navbar,
 .navbar.navbar-white.shrink .navbar-nav>li.active>a:before,
 .navbar.shrink {
-  background-color: #000;
+  background-color: #000
 }
 
 .navbar .navbar-nav>li.active>a:before,
 .navbar .navbar-toggle .icon-bar,
 .navbar.navbar-white.shrink {
-  background-color: #fff;
+  background-color: #fff
 }
 
 .navbar .navbar-brand,
 .navbar .navbar-nav>li>a {
-  color: #fff;
+  color: #fff
 }
 
 .navbar,
@@ -1865,90 +1865,72 @@ h6 {
   -webkit-transition: all .2s ease-in-out;
   -moz-transition: all .2s ease-in-out;
   -o-transition: all .2s ease-in-out;
-  transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out
 }
 
 .navbar {
   border: none;
   border-radius: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 15px;
-  height: 80px;
+  display: inline-table;
   margin: 0;
-  width: 100%;
-}
-
-.navbar.shrink {
-  -webkit-box-shadow: 0 8px 17px -8px rgba(0, 0, 0, .1);
-  -moz-box-shadow: 0 8px 17px -8px rgba(0, 0, 0, .1);
-  box-shadow: 0 8px 17px -8px rgba(0, 0, 0, .1);
-  height: 60px;
-  opacity: 0.96;
+  width: 100%
 }
 
 .navbar .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
-  padding: 0;
+  display: table-cell;
+  position: relative;
+  vertical-align: middle;
+  height: 80px
 }
 
 .navbar .navbar-brand {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  padding: 0 15px;
+  height: 80px;
+  line-height: 80px!important;
+  padding: 0 15px
 }
 
 .navbar .navbar-brand img {
+  display: inline-block;
   max-height: 43px;
-  transition: all 0.2s ease-in-out;
-}
-
-.navbar.shrink .navbar-brand img {
-  max-height: 30px;
+  position: absolute;
+  top: 18px;
+  left: auto
 }
 
 .navbar .navbar-brand img.logo-navbar-white {
-  opacity: 0;
+  opacity: 0
 }
 
 .navbar .navbar-toggle {
   border: 1px solid #fff;
   border-radius: 0;
-  background: transparent;
-  cursor: pointer;
-  padding: 9px 10px;
-  margin-top: 24px;
+  margin-top: 24px
 }
 
 .navbar .navbar-toggle:focus,
 .navbar .navbar-toggle:hover {
   background-color: transparent;
+  cursor: pointer
 }
 
-.navbar .navbar-nav {
-  display: flex;
-  align-items: center;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  flex: 1;
-  justify-content: space-around;
+.navbar .navbar-nav>li.active>a,
+.navbar .navbar-nav>li>a:focus,
+.navbar .navbar-nav>li>a:hover {
+  background-color: inherit
+}
+
+.navbar .navbar-collapse {
+  box-shadow: none
 }
 
 .navbar .navbar-nav>li {
-  padding: 10px 15px;
-  position: relative;
+  padding: 10px 0 10px 30px
 }
 
 .navbar .navbar-nav>li.active>a:focus,
 .navbar .navbar-nav>li.active>a:hover {
   background-color: inherit;
-  opacity: 1;
+  opacity: 1
 }
 
 .navbar .navbar-nav>li.active>a:before {
@@ -1958,7 +1940,7 @@ h6 {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 1px;
+  height: 1px
 }
 
 .navbar .navbar-nav>li>a {
@@ -1968,43 +1950,49 @@ h6 {
   -webkit-transition: opacity .2s ease-in-out;
   -moz-transition: opacity .2s ease-in-out;
   -o-transition: opacity .2s ease-in-out;
-  transition: opacity .2s ease-in-out;
+  transition: opacity .2s ease-in-out
 }
 
 .navbar .navbar-nav>li>a:hover {
-  opacity: .8;
+  opacity: .8
 }
 
 .scroll-to-top,
 .title-sideline-black:before {
-  background-color: #000;
+  background-color: #000
 }
 
 .navbar .navbar-nav>li.action-button>a:focus,
 .navbar .navbar-nav>li.action-button>a:hover {
-  opacity: 1;
+  opacity: 1
 }
 
 .navbar .header-action-button {
   height: 80px;
-  line-height: 80px;
+  line-height: 80px
+}
+
+.navbar.shrink {
+  -webkit-box-shadow: 0 8px 17px -8px rgba(0, 0, 0, .1);
+  -moz-box-shadow: 0 8px 17px -8px rgba(0, 0, 0, .1);
+  box-shadow: 0 8px 17px -8px rgba(0, 0, 0, .1)
 }
 
 .navbar.shrink .header-action-button {
   height: 60px;
-  line-height: 60px;
+  line-height: 60px
 }
 
 .navbar.navbar-white.shrink {
-  opacity: .96;
+  opacity: .96
 }
 
 .navbar.navbar-white.shrink .navbar-brand img.logo-navbar-dark {
-  opacity: 0;
+  opacity: 0
 }
 
 .navbar.navbar-white.shrink .navbar-brand img.logo-navbar-white {
-  opacity: 1;
+  opacity: 1
 }
 
 
