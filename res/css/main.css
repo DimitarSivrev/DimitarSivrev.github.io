@@ -1924,7 +1924,7 @@ h6 {
 }
 
 .navbar .navbar-nav>li {
-  padding: 10px 0 10px 0px
+  padding: 10px 0 10px 10px
 }
 
 .navbar .navbar-nav>li.active>a:focus,
