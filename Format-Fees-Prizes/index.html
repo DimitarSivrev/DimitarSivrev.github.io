@@ -155,7 +155,7 @@ Event website by Syed Faheel Ahmad (github.com/faheel)
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="card mx-auto" style="max-width: 600px;">
-        <div class="card-header bg-primary text-white text-center">
+        <div class="card-header bg-primary text-white text-center d-flex justify-content-center align-items-center">
           <h3 class="m-0">Rules and Guidelines</h3>
         </div>
         <div class="card-body text-center">
@@ -180,10 +180,15 @@ Event website by Syed Faheel Ahmad (github.com/faheel)
   text-align: center;
   white-space: pre-line; /* Ensures that the lines break as intended */
 }
-
 .card {
   max-width: 600px; /* Adjust the max-width as needed */
   margin: 0 auto; /* Center the card horizontally */
+}
+.card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px; /* Adjust height as needed */
 }
 </style>
 
