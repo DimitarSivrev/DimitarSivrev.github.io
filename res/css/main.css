@@ -1646,6 +1646,14 @@ h6 {
   opacity: 1
 }
 
+
+.card-header {
+  padding: 15px;
+  background-color: #007bff; /* Bootstrap primary color */
+  color: white;
+  text-align: center;
+}
+
 .gallery-grid figcaption a {
   display: block;
   height: 100%;
