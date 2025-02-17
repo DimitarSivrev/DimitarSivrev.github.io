@@ -17,6 +17,66 @@ Event website by Syed Faheel Ahmad (github.com/faheel)
 <!--<![endif]-->
 
 <head>
+  <style>
+    /* Card Styles */
+  .card {
+    border: none;
+    border-radius: 0.75rem; /* Smooth rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition effect */
+  }
+  
+  /* Card hover effect */
+  .card:hover {
+    transform: translateY(-10px); /* Slight lift effect on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* More intense shadow on hover */
+  }
+  
+  /* Card Header */
+  .card-header {
+    padding: 1.25rem; /* Add some space in the header */
+    font-size: 1.25rem; /* Increase font size */
+    font-weight: bold;
+    text-transform: uppercase; /* Make header text uppercase */
+    border-top-left-radius: 0.75rem; /* Round the top-left corner */
+    border-top-right-radius: 0.75rem; /* Round the top-right corner */
+  }
+  
+  /* Card Body */
+  .card-body {
+    padding: 1.5rem; /* Add more padding inside the card */
+    background-color: #f8f9fa; /* Light background for content */
+    border-bottom-left-radius: 0.75rem; /* Round the bottom-left corner */
+    border-bottom-right-radius: 0.75rem; /* Round the bottom-right corner */
+    font-size: 1.5rem;
+    line-height: 1.6; /* Improve readability */
+  }
+  
+  /* List Items Inside Cards */
+  .card-body ul li {
+    margin-bottom: 0.75rem;
+    font-size: 1.5rem;
+  }
+  
+  /* Card Icon Styling */
+  .card-body i {
+    margin-right: 0.5rem;
+    font-size: 1.5rem; /* Slightly larger icons */
+  }
+  
+  
+  /* Responsive Design - Adjusting the card size for mobile devices */
+  @media (max-width: 767px) {
+    .col-md-6 {
+      margin-bottom: 2rem; /* Increase space between cards on mobile */
+    }
+  
+    .card-body {
+      padding: 1rem; /* Reduce padding inside cards for smaller screens */
+    }
+  }
+  
+  </style>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
