@@ -246,11 +246,39 @@ Section - Live Results Start
 
 
 
-<a href="/tournaments/feb-2025.html"
-   class="btn btn-base-color sm-btn-medium btn-large margin-4-5 no-margin-bottom no-margin-rl">
-  See tournament Feb 2025
-</a>
+<style>
+/* Textured-yellow call-to-action button */
+.btn-textured-yellow{
+  display:inline-block;
+  /* dotted “noise” layer + yellow gradient */
+  background-image:
+    radial-gradient(rgba(255,255,255,.25) 0, rgba(255,255,255,.25) 1px, transparent 1px, transparent 4px),
+    linear-gradient(135deg, #ffd83d 0%, #ffc400 100%);
+  background-size:4px 4px, 100% 100%;
+  color:#1a1a1a;                 /* dark text for contrast   */
+  text-decoration:none;
+  font:600 1rem/1.2 "Helvetica Neue", Arial, sans-serif;
+  padding:12px 28px;
+  border:none;
+  border-radius:6px;
+  text-shadow:0 1px 1px rgba(255,255,255,.6);
+  box-shadow:0 4px 8px rgba(0,0,0,.2);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
 
+.btn-textured-yellow:hover,
+.btn-textured-yellow:focus{
+  transform:translateY(-2px);
+  box-shadow:0 6px 12px rgba(0,0,0,.25);
+  outline:none;
+}
+</style>
+
+<!-- ✨ Paste this where the link should appear -->
+<a href="/tournaments/feb-2025.html"
+   class="btn-textured-yellow">
+  See&nbsp;tournament&nbsp;Feb&nbsp;2025
+</a>
 
 
 
