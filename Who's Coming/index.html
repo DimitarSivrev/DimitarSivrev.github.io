@@ -43,6 +43,93 @@
   <![endif]-->
 </head>
 
+<style>
+  :root{
+    --masters: #3b82f6;           /* blue */
+    --masters-dark: #1d4ed8;
+    --masters-soft: #e0ecff;
+
+    --inter: #10b981;             /* green/teal */
+    --inter-dark: #047857;
+    --inter-soft: #d9f7ec;
+  }
+
+  /* Card shells */
+  .bracket-card{
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 10px 24px rgba(0,0,0,.08);
+    border: 3px solid transparent;
+    position: relative;
+  }
+  .bracket-card .card-header{
+    padding: 14px 18px;
+    color:#fff;
+    text-transform: uppercase;
+    letter-spacing:.06em;
+    font-weight: 800;
+    display:flex;
+    align-items:center;
+    gap:.6rem;
+  }
+  .bracket-card .card-header .fa{
+    font-size:1.25rem;
+    opacity:.95;
+    transform: rotate(-8deg);
+  }
+  .bracket-card .count-pill{
+    margin-left:auto;
+    background: rgba(255,255,255,.18);
+    border: 1px solid rgba(255,255,255,.35);
+    padding:.15rem .55rem;
+    border-radius:999px;
+    font-weight:700;
+    font-size:.85rem;
+  }
+  .bracket-card .table-responsive{ padding: 12px 14px 16px; }
+
+  /* Themed variants */
+  .bracket-card.masters{ border-color: var(--masters); }
+  .bracket-card.masters .card-header{
+    background: linear-gradient(135deg, var(--masters) 0%, var(--masters-dark) 100%);
+  }
+
+  .bracket-card.inters{ border-color: var(--inter); }
+  .bracket-card.inters .card-header{
+    background: linear-gradient(135deg, var(--inter) 0%, var(--inter-dark) 100%);
+  }
+
+  /* Table theming */
+  .table-themed thead th{
+    position: sticky; top: 0; z-index: 1;
+    color:#fff; border:0;
+  }
+  .table-themed.masters thead th{ background: var(--masters-dark); }
+  .table-themed.inters  thead th{ background: var(--inter-dark); }
+
+  .table-themed tbody tr:nth-child(odd){ background: rgba(0,0,0,.015); }
+  .table-themed.masters tbody tr:nth-child(even){ background: var(--masters-soft); }
+  .table-themed.inters  tbody tr:nth-child(even){ background: var(--inter-soft); }
+
+  .table-themed tbody tr:hover{
+    filter: brightness(0.98);
+    transition: background-color .15s ease, filter .15s ease;
+  }
+  .table-themed td, .table-themed th{ vertical-align: middle; }
+
+  /* Cute checker “pips” accent under the header */
+  .bracket-card::after{
+    content:"";
+    position:absolute; inset:auto 12px -10px auto;
+    height:10px; width: 90px; border-radius:10px;
+    opacity:.25;
+  }
+  .bracket-card.masters::after{ background: linear-gradient(90deg,var(--masters),var(--masters-dark)); }
+  .bracket-card.inters::after{  background: linear-gradient(90deg,var(--inter),var(--inter-dark)); }
+</style>
+
+
 <body id="page-top">
   <!-- Navigation Start -->
   <nav id="navigation" class="navbar navbar-fixed-top navbar-dark">
@@ -88,7 +175,7 @@
 
 
   <!-- Section - Participants start -->
-  <section id="participants" class="bg-white-2">
+<section id="participants" class="bg-white-2">
   <div class="container">
     <div class="row no-padding-rl">
       <div class="col-md-12">
@@ -101,38 +188,56 @@
     <div class="row">
       <!-- Masters -->
       <div class="col-md-6">
-        <h3 class="font-family-alt font-weight-700 text-gray-dark-2">Masters</h3>
-        <table id="masters-table" class="table table-striped">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Registration</th>
-              <th>Entry</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+        <div class="bracket-card masters">
+          <div class="card-header">
+            <i class="fa fa-dice"></i>
+            Masters
+            <span class="count-pill" id="masters-count">0</span>
+          </div>
+          <div class="table-responsive">
+            <table id="masters-table" class="table table-striped table-hover table-themed masters">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Registration</th>
+                  <th>Entry</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
       </div>
 
       <!-- Intermediates -->
       <div class="col-md-6">
-        <h3 class="font-family-alt font-weight-700 text-gray-dark-2">Intermediates</h3>
-        <table id="intermediates-table" class="table table-striped">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Registration</th>
-              <th>Entry</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+        <div class="bracket-card inters">
+          <div class="card-header">
+            <i class="fa fa-dice"></i>
+            Intermediates
+            <span class="count-pill" id="intermediates-count">0</span>
+          </div>
+          <div class="table-responsive">
+            <table id="intermediates-table" class="table table-striped table-hover table-themed inters">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Registration</th>
+                  <th>Entry</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
+
 
   <!-- Section - Participants end -->
 
@@ -300,8 +405,9 @@
   function renderTable(tableId, values) {
     const tbody = document.querySelector(`#${tableId} tbody`);
     tbody.innerHTML = '';
-    (values || []).forEach((row, i) => {
-      if (!row || row.length === 0) return;
+
+    const clean = (values || []).filter(row => row && row.length > 0);
+    clean.forEach((row, i) => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
         <td>${i + 1}</td>
@@ -311,7 +417,13 @@
       `;
       tbody.appendChild(tr);
     });
+
+    // Update the pill count if present
+    const countId = tableId.replace('-table', '-count');
+    const pill = document.getElementById(countId);
+    if (pill) pill.textContent = clean.length;
   }
+
 
   async function fetchBothLists() {
     const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values:batchGet?${ranges.map(r => 'ranges=' + encodeURIComponent(r)).join('&')}&key=${apiKey}`;
