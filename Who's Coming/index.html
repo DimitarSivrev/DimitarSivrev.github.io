@@ -198,7 +198,6 @@
             <table id="masters-table" class="table table-striped table-hover table-themed masters">
               <thead>
                 <tr>
-                  <th>#</th>
                   <th>Name</th>
                   <th>Registration</th>
                   <th>Entry</th>
@@ -222,7 +221,6 @@
             <table id="intermediates-table" class="table table-striped table-hover table-themed inters">
               <thead>
                 <tr>
-                  <th>#</th>
                   <th>Name</th>
                   <th>Registration</th>
                   <th>Entry</th>
@@ -407,10 +405,9 @@
     tbody.innerHTML = '';
 
     const clean = (values || []).filter(row => row && row.length > 0);
-    clean.forEach((row, i) => {
+    clean.forEach((row) => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
-        <td>${i + 1}</td>
         <td>${row[0] ?? ''}</td>
         <td>${row[1] ?? ''}</td>
         <td>${row[2] ?? ''}</td>
@@ -418,7 +415,7 @@
       tbody.appendChild(tr);
     });
 
-    // Update the pill count if present
+    // Keep the pill count working
     const countId = tableId.replace('-table', '-count');
     const pill = document.getElementById(countId);
     if (pill) pill.textContent = clean.length;
