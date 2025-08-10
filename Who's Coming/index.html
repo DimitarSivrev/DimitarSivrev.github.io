@@ -271,41 +271,68 @@
   <script src="../res/js/countdown.js"></script>
 
   <script src="https://apis.google.com/js/api.js"></script>
-  <script>
-    const apiKey = 'AIzaSyDsBGhABTCXGDWREX89dlvla27Tpiujj3E'; // Replace with your API key
-    const spreadsheetId = '17hBBpkz44gZZjLd-mQUu2UZ23zd8U8pnau8AeIGS330'; // Replace with your spreadsheet ID
-    const range = 'Sheet1!B3:D170'; // Adjust the range to include the columns you need
 
-function fetchSheetData() {
-  const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=${apiKey}`;
 
-  fetch(url)
-    .then(response => response.json())
-    .then(data => {
-      const values = data.values;
-      const tableBody = document.querySelector('#participants-table tbody');
-      
-      // Clear the table body first
-      tableBody.innerHTML = '';
-      
-      values.forEach((row, index) => {
-        if (row.length > 0) { // Check if the row has data
-          const tr = document.createElement('tr');
-          tr.innerHTML = `
-            <td>${index + 1}</td>
-            <td>${row[0] || ''}</td>
-            <td>${row[1] || ''}</td>
-            <td>${row[2] || ''}</td>
-          `;
-          tableBody.appendChild(tr);
-        }
-      });
-    })
-    .catch(error => console.error('Error fetching data: ', error));
-}
 
-document.addEventListener('DOMContentLoaded', fetchSheetData);
-  </script>
+
+
+<table id="sheetA" class="table">
+  <thead><tr><th>#</th><th>B</th><th>C</th><th>D</th></tr></thead>
+  <tbody></tbody>
+</table>
+
+<table id="sheetB" class="table">
+  <thead><tr><th>#</th><th>B</th><th>C</th><th>D</th></tr></thead>
+  <tbody></tbody>
+</table>
+
+<script>
+  const apiKey = 'AIzaSyDsBGhABTCXGDWREX89dlvla27Tpiujj3E';
+  const spreadsheetId = '1_FxdYipoExzpXiXZpyfTGOPPOxkYmed06_xYKilTZlU';
+
+  // Edit these to the tab (page) names you want to show
+  const ranges = [
+    'Sheet1!B2:D170', // first tab
+    'Sheet2!B2:D170'  // second tab
+  ];
+
+  function renderTable(tableId, values) {
+    const tbody = document.querySelector(`#${tableId} tbody`);
+    tbody.innerHTML = '';
+    (values || []).forEach((row, i) => {
+      if (!row || row.length === 0) return;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${i + 1}</td>
+        <td>${row[0] ?? ''}</td>
+        <td>${row[1] ?? ''}</td>
+        <td>${row[2] ?? ''}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  async function fetchTwoSheets() {
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values:batchGet?${ranges.map(r => 'ranges=' + encodeURIComponent(r)).join('&')}&key=${apiKey}`;
+
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+
+      // valueRanges comes back in the same order as requested
+      const [first, second] = data.valueRanges || [];
+
+      renderTable('sheetA', first?.values);
+      renderTable('sheetB', second?.values);
+    } catch (err) {
+      console.error('Error fetching data:', err);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', fetchTwoSheets);
+</script>
+
+
 
 </body>
 
