@@ -89,34 +89,51 @@
 
   <!-- Section - Participants start -->
   <section id="participants" class="bg-white-2">
-    <div class="container">
-      <div class="row no-padding-rl">
-        <div class="col-md-12">
-          <h2 class="font-family-alt font-weight-700 sm-title-large title-extra-large-2 text-gray-dark-2">Who's Coming</h2>
-          <span class="bg-base-color xs-margin-6 xs-no-margin-rl margin-3 no-margin-rl separator-line-extra-thick-long"></span>
-          <br>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-12">
-          <table id="participants-table" class="table table-striped">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Registration</th>
-                <th>Entry</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- Table rows will be inserted here by JavaScript -->
-            </tbody>
-          </table>
-        </div>
+  <div class="container">
+    <div class="row no-padding-rl">
+      <div class="col-md-12">
+        <h2 class="font-family-alt font-weight-700 sm-title-large title-extra-large-2 text-gray-dark-2">Who's Coming</h2>
+        <span class="bg-base-color xs-margin-6 xs-no-margin-rl margin-3 no-margin-rl separator-line-extra-thick-long"></span>
+        <br>
       </div>
     </div>
-  </section>
+
+    <div class="row">
+      <!-- Masters -->
+      <div class="col-md-6">
+        <h3 class="font-family-alt font-weight-700 text-gray-dark-2">Masters</h3>
+        <table id="masters-table" class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Registration</th>
+              <th>Entry</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <!-- Intermediates -->
+      <div class="col-md-6">
+        <h3 class="font-family-alt font-weight-700 text-gray-dark-2">Intermediates</h3>
+        <table id="intermediates-table" class="table table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Registration</th>
+              <th>Entry</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
   <!-- Section - Participants end -->
 
 
@@ -271,29 +288,13 @@
   <script src="../res/js/countdown.js"></script>
 
   <script src="https://apis.google.com/js/api.js"></script>
-
-
-
-
-
-<table id="sheetA" class="table">
-  <thead><tr><th>#</th><th>B</th><th>C</th><th>D</th></tr></thead>
-  <tbody></tbody>
-</table>
-
-<table id="sheetB" class="table">
-  <thead><tr><th>#</th><th>B</th><th>C</th><th>D</th></tr></thead>
-  <tbody></tbody>
-</table>
-
-<script>
-  const apiKey = 'AIzaSyDsBGhABTCXGDWREX89dlvla27Tpiujj3E';
-  const spreadsheetId = '1_FxdYipoExzpXiXZpyfTGOPPOxkYmed06_xYKilTZlU';
-
-  // Edit these to the tab (page) names you want to show
+  <script>
+    const apiKey = 'AIzaSyDsBGhABTCXGDWREX89dlvla27Tpiujj3E'; // Replace with your API key
+    const spreadsheetId = '1_FxdYipoExzpXiXZpyfTGOPPOxkYmed06_xYKilTZlU'; // Replace with your spreadsheet ID
+// Update these to match your Google Sheets tab names (pages)
   const ranges = [
-    'Sheet1!B2:D170', // first tab
-    'Sheet2!B2:D170'  // second tab
+    'Masters!B2:D170',        // Masters tab
+    'Intermediates!B2:D170'   // Intermediates tab
   ];
 
   function renderTable(tableId, values) {
@@ -312,26 +313,22 @@
     });
   }
 
-  async function fetchTwoSheets() {
+  async function fetchBothLists() {
     const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values:batchGet?${ranges.map(r => 'ranges=' + encodeURIComponent(r)).join('&')}&key=${apiKey}`;
-
     try {
       const res = await fetch(url);
       const data = await res.json();
-
-      // valueRanges comes back in the same order as requested
-      const [first, second] = data.valueRanges || [];
-
-      renderTable('sheetA', first?.values);
-      renderTable('sheetB', second?.values);
+      const [masters, inters] = data.valueRanges || [];
+      renderTable('masters-table', masters?.values);
+      renderTable('intermediates-table', inters?.values);
     } catch (err) {
       console.error('Error fetching data:', err);
     }
   }
 
-  document.addEventListener('DOMContentLoaded', fetchTwoSheets);
-</script>
+  document.addEventListener('DOMContentLoaded', fetchBothLists);
 
+  </script>
 
 
 </body>
