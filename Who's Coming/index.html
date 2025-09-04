@@ -53,6 +53,11 @@
     --inter-dark: #047857;
     --inter-soft: #d9f7ec;
   }
+  /* Masters players 64 player limit*/
+    tr.masters td {
+      color: #cc00ff;
+      font-weight: bold;
+    }
 
   /* Card shells */
   .bracket-card{
@@ -235,9 +240,7 @@
     </div>
   </div>
 </section>
-
-
-  <!-- Section - Participants end -->
+<!-- Section - Participants end -->
 
 
 
@@ -394,48 +397,56 @@
   <script>
     const apiKey = 'AIzaSyDsBGhABTCXGDWREX89dlvla27Tpiujj3E'; // Replace with your API key
     const spreadsheetId = '1_FxdYipoExzpXiXZpyfTGOPPOxkYmed06_xYKilTZlU'; // Replace with your spreadsheet ID
-// Update these to match your Google Sheets tab names (pages)
-  const ranges = [
-    'Masters!B2:D170',        // Masters tab
-    'Intermediates!B2:D170'   // Intermediates tab
-  ];
+    const mastersSpecialRowCount = 64; 
 
-  function renderTable(tableId, values) {
-    const tbody = document.querySelector(`#${tableId} tbody`);
-    tbody.innerHTML = '';
+    const ranges = [
+      'Masters!B2:D170',        // Masters tab
+      'Intermediates!B2:D170'   // Intermediates tab
+    ];
 
-    const clean = (values || []).filter(row => row && row.length > 0);
-    clean.forEach((row) => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${row[0] ?? ''}</td>
-        <td>${row[1] ?? ''}</td>
-        <td>${row[2] ?? ''}</td>
-      `;
-      tbody.appendChild(tr);
-    });
+    function renderTable(tableId, values) {
+      const tbody = document.querySelector(`#${tableId} tbody`);
+      tbody.innerHTML = '';
 
-    // Keep the pill count working
-    const countId = tableId.replace('-table', '-count');
-    const pill = document.getElementById(countId);
-    if (pill) pill.textContent = clean.length;
-  }
+      const clean = (values || []).filter(row => row && row.length > 0);
+  
+      clean.forEach((row, index) => {
+        const tr = document.createElement('tr');
+        
 
+        if (tableId === 'masters-table' && index < mastersSpecialRowCount) {
+          tr.classList.add('masters');
+        }
 
-  async function fetchBothLists() {
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values:batchGet?${ranges.map(r => 'ranges=' + encodeURIComponent(r)).join('&')}&key=${apiKey}`;
-    try {
-      const res = await fetch(url);
-      const data = await res.json();
-      const [masters, inters] = data.valueRanges || [];
-      renderTable('masters-table', masters?.values);
-      renderTable('intermediates-table', inters?.values);
-    } catch (err) {
-      console.error('Error fetching data:', err);
+        tr.innerHTML = `
+          <td>${row[0] ?? ''}</td>
+          <td>${row[1] ?? ''}</td>
+          <td>${row[2] ?? ''}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      // Keep the pill count working
+      const countId = tableId.replace('-table', '-count');
+      const pill = document.getElementById(countId);
+      if (pill) pill.textContent = clean.length;
     }
-  }
 
-  document.addEventListener('DOMContentLoaded', fetchBothLists);
+
+    async function fetchBothLists() {
+      const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values:batchGet?${ranges.map(r => 'ranges=' + encodeURIComponent(r)).join('&')}&key=${apiKey}`;
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        const [masters, inters] = data.valueRanges || [];
+        renderTable('masters-table', masters?.values);
+        renderTable('intermediates-table', inters?.values);
+      } catch (err) {
+        console.error('Error fetching data:', err);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', fetchBothLists);
 
   </script>
 
