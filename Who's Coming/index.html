@@ -58,6 +58,10 @@
       color: #cc00ff;
       font-weight: bold;
     }
+    tr.intermediates td {
+      color: #109d00;
+      font-weight: bold;
+    }
 
   /* Card shells */
   .bracket-card{
@@ -219,7 +223,7 @@
         <div class="bracket-card inters">
           <div class="card-header">
             <i class="fa fa-dice"></i>
-            Intermediates
+            Intermediates (GREEN = Inside Tournament)
             <span class="count-pill" id="intermediates-count">0</span>
           </div>
           <div class="table-responsive">
@@ -394,14 +398,16 @@
   <script src="../res/js/countdown.js"></script>
 
   <script src="https://apis.google.com/js/api.js"></script>
-  <script>
+<script>
     const apiKey = 'AIzaSyDsBGhABTCXGDWREX89dlvla27Tpiujj3E'; // Replace with your API key
     const spreadsheetId = '1_FxdYipoExzpXiXZpyfTGOPPOxkYmed06_xYKilTZlU'; // Replace with your spreadsheet ID
-    const mastersSpecialRowCount = 64; 
+
+    const mastersSpecialRowCount = 64;
+    const intersSpecialRowCount = 32; 
 
     const ranges = [
-      'Masters!B2:D170',        // Masters tab
-      'Intermediates!B2:D170'   // Intermediates tab
+      'Masters!B2:D170',
+      'Intermediates!B2:D170'
     ];
 
     function renderTable(tableId, values) {
@@ -409,13 +415,15 @@
       tbody.innerHTML = '';
 
       const clean = (values || []).filter(row => row && row.length > 0);
-  
+
       clean.forEach((row, index) => {
         const tr = document.createElement('tr');
-        
 
         if (tableId === 'masters-table' && index < mastersSpecialRowCount) {
-          tr.classList.add('masters');
+          tr.classList.add('special-name');
+        } 
+        else if (tableId === 'intermediates-table' && index < intersSpecialRowCount) {
+          tr.classList.add('special-name-inter');
         }
 
         tr.innerHTML = `
@@ -426,7 +434,6 @@
         tbody.appendChild(tr);
       });
 
-      // Keep the pill count working
       const countId = tableId.replace('-table', '-count');
       const pill = document.getElementById(countId);
       if (pill) pill.textContent = clean.length;
@@ -449,7 +456,6 @@
     document.addEventListener('DOMContentLoaded', fetchBothLists);
 
   </script>
-
 
 </body>
 
