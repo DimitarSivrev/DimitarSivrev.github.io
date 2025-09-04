@@ -420,10 +420,10 @@
         const tr = document.createElement('tr');
 
         if (tableId === 'masters-table' && index < mastersSpecialRowCount) {
-          tr.classList.add('special-name');
+          tr.classList.add('masters');
         } 
         else if (tableId === 'intermediates-table' && index < intersSpecialRowCount) {
-          tr.classList.add('special-name-inter');
+          tr.classList.add('intermediates');
         }
 
         tr.innerHTML = `
