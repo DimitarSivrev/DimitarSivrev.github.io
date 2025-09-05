@@ -246,42 +246,49 @@ Section - Live Results Start
 
 
 
-<!-- ✨ Paste the CSS once (e.g. inside <head>) -->
 <style>
-/* Larger textured-yellow call-to-action button */
-.btn-textured-yellow{
-  display:inline-block;
-  /* dotted “noise” layer + yellow gradient */
-  background-image:
-    radial-gradient(rgba(255,255,255,.25) 0, rgba(255,255,255,.25) 1px, transparent 1px, transparent 4px),
-    linear-gradient(135deg, #ffd83d 0%, #ffc400 100%);
-  background-size:4px 4px, 100% 100%;
-  color:#1a1a1a;
-  text-decoration:none;
-  font:600 2rem/2 "Helvetica Neue", Arial, sans-serif; /* bigger text */
-  padding:32px 64px;      /* bigger hit area  */
-  border:none;
-  border-radius:8px;
-  text-shadow:0 1px 1px rgba(255,255,255,.6);
-  box-shadow:0 6px 12px rgba(0,0,0,.25);
-  margin-top:2rem;        /* white space above */
-  transition:transform .15s ease, box-shadow .15s ease;
-}
+  /* Your original button style remains here */
+  .btn-textured-yellow {
+    display: inline-block;
+    background-image: radial-gradient(rgba(255, 255, 255, .25) 0, rgba(255, 255, 255, .25) 1px, transparent 1px, transparent 4px),
+      linear-gradient(135deg, #ffd83d 0%, #ffc400 100%);
+    background-size: 4px 4px, 100% 100%;
+    color: #1a1a1a;
+    text-decoration: none;
+    font: 600 2rem/2 "Helvetica Neue", Arial, sans-serif;
+    padding: 32px 64px;
+    border: none;
+    border-radius: 8px;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, .6);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .25);
+    margin-top: 2rem;
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
 
-.btn-textured-yellow:hover,
-.btn-textured-yellow:focus{
-  transform:translateY(-2px);
-  box-shadow:0 8px 16px rgba(0,0,0,.25);
-  outline:none;
-}
+  .btn-textured-yellow:hover,
+  .btn-textured-yellow:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, .25);
+    outline: none;
+  }
+
+  /* ADD THIS MEDIA QUERY FOR MOBILE DEVICES */
+  @media (max-width: 600px) {
+    .btn-textured-yellow {
+      /* Make button full-width for a better mobile layout */
+      width: 100%;
+      box-sizing: border-box; /* Ensures padding is included in the width */
+      text-align: center;
+
+      /* Reduce padding and font size */
+      padding: 20px 24px;
+      font-size: 1.4rem;
+    }
+  }
 </style>
-
-<!-- ✨ Paste this where the button should appear -->
-<a href="/tournaments/feb-2025.html"
-   class="btn-textured-yellow">
-  See&nbsp;Tournament&nbsp;Feb&nbsp;2025&nbsp;Results
+<a href="/tournaments/feb-2025.html" class="btn-textured-yellow">
+  See Tournament Feb 2025 Results
 </a>
-
 
 
 
