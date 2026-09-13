@@ -5,7 +5,7 @@
     /* Card Styles */
   .card {
     max-width: 900px; /* Increase max width */
-    min-height: 500px; /* Increase height */
+    min-height: 0;
     margin: 0 auto; /* Center the card */
     padding: 3rem; /* Add padding */
     border-radius: 15px; /* Rounded corners */
@@ -25,6 +25,31 @@
     border-top-right-radius: 0.75rem; /* Round the top-right corner */
   }
   
+  /* Annual colours match the results links: 2025 yellow, 2026 blue. */
+  .card-header .charity-year {
+    padding: 18px;
+    line-height: 1.8;
+  }
+  .card-header .charity-year-2025 {
+    background: #fff0a6;
+    border-color: #ffd83d;
+    color: #594600;
+  }
+  .card-header .charity-year-2026 {
+    background: #b9e3ff;
+    border-color: #78bfff;
+    color: #163e63;
+  }
+  .charity-year strong,
+  .charity-year em {
+    display: inline-block;
+    padding: 0 5px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, .7);
+    color: #182536;
+    font-style: normal;
+    font-weight: 800;
+  }
   /* Card Body */
   .card-body {
     padding: 1.5rem; /* Add more padding inside the card */
@@ -124,30 +149,22 @@
     <div class="row text-center clearfix" >
       <div class="card">
         <div class="card-header bg-primary text-white">
-          <h3>Supporting Devon Air Ambulance</h3>
-          <div class="alert alert-info text-center" role="alert" style="margin:15px 0 0;">
-            <p style="margin:0;">In 2025 we raised <strong>£725</strong> for <em>The Stroke Association</em> thanks to the generous donations of our players.</p>
+          <h3>2027 Charity coming soon</h3>
+          <div class="alert charity-year charity-year-2025 text-center" role="alert" style="margin:15px 0 0;">
+            <p style="margin:0;">In 2025 we raised <strong>&pound;725</strong> for <em>The Stroke Association</em>. Many thanks to everyone who helped make it possible!</p>
+          </div>
+          <div class="alert charity-year charity-year-2026 text-center" role="alert" style="margin:15px 0 0;">
+            <p style="margin:0;">In 2026 we raised <strong>&pound;1,058.13</strong> for <em>Devon Air Ambulance</em>. A huge thank you to everyone who contributed!</p>
           </div>
         </div>
 
         <div class="card-body">
-          <p>For 2026, we are proud to support <strong>Devon Air Ambulance</strong>!</p>
-          
-          <p>Devon Air Ambulance is the charitable trust which raises the funds to keep two emergency air ambulances flying and four critical care cars on the road, delivering enhanced and critical care across Devon.</p>
-          <p>We are proud to be independent of Government funding; Every penny raised is with thanks to the generosity of the communities, businesses and friends of Devon. Thank you for your support - it really does save lives! Together we are Devon Air Ambulance.</p>
-        
+
           <div class="charity-card my-4">
-            <p class="font-weight-bold">Anyone who wishes to support Devon Air Ambulance can donate via the donate button:</p>
-            <br>
-            <a href="https://www.justgiving.com/page/plamen-sivrev-2?utm_medium=FA&utm_source=CL" target="_blank" class="btn btn-outline-base-color charity-btn">
-              Donate Now
+            <p>The button below opens our JustGiving donations page supporting Devon Air Ambulance.</p>
+            <a href="https://www.justgiving.com/page/plamen-sivrev-2?utm_medium=FA&utm_source=CL" target="_blank" rel="noopener noreferrer" class="btn btn-outline-base-color charity-btn">
+              Donate to Devon Air Ambulance
             </a>
-            <p class="mt-3">Or contribute in cash during the event.</p>
-          </div>
-        
-          <div class="mt-5">
-            <p class="font-weight-bold text-base-color">Together, we can make a real difference!</p>
-            <p class="text-base-color">#Fundraising #DevonAirAmbulance #ERBGC</p>
           </div>
         </div>
         
@@ -166,7 +183,7 @@
             Date &amp; Time
           </span>
           <p class="margin-3 font-family-alt no-margin-bottom no-margin-rl title-small text-gray-dark-2">
-             20th to 22nd February 2026
+             19th to 21st February 2027
           </p>
         </div>
         <div class="col-sm-4 xs-margin-8 xs-no-margin-bottom xs-no-margin-rl text-center">
@@ -220,7 +237,7 @@
             <img src="res/images/logos/logo.png" alt="">
           </div>
           <p class="disclaimer xs-text-center">
-            English Riviera Backgammon Congress February 2026.
+            English Riviera Backgammon Congress February 2027.
           </p>
           </div>
         <div class="col-sm-8">
